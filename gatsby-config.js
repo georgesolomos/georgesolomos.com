@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `George Solomos`,
-    description: `My personal website!`,
+    description: `The home of George Solomos on the web`,
     author: `@georgesolomos`,
   },
   plugins: [
@@ -18,13 +18,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `georgesolomos.com`,
+        short_name: `George Solomos`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        background_color: `#404040`,
+        theme_color: `#404040`,
+        display: `standalone`,
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        include_favicon: true
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

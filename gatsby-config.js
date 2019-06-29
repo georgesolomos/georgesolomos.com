@@ -1,3 +1,6 @@
+require("dotenv").config()
+const colors = require("./colors")
+
 module.exports = {
   siteMetadata: {
     title: `George Solomos`,
@@ -19,17 +22,24 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `georgesolomos.com`,
-        short_name: `George Solomos`,
+        short_name: `georgesolomos.com`,
         start_url: `/`,
-        background_color: `#404040`,
-        theme_color: `#404040`,
+        background_color: colors.background,
+        theme_color: colors.primary,
         display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
-        include_favicon: true
+        // This path is relative to the root of the site
+        icon: `src/components/logos/georgesolomos.svg`,
+        include_favicon: true,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-plugin-google-fonts",
+      options: {
+        fonts: ["cabin", "Open Sans"],
+      },
+    },
+    "gatsby-plugin-offline",
+    "gatsby-transformer-remark",
   ],
 }

@@ -1,13 +1,46 @@
 import React from "react"
+import { Heading, Box } from "rebass"
+import Layout from "../components/Layout"
+import Section from "../components/Section"
+import Triangle from "../components/Triangle"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+const Background = () => (
+  <div>
+    <Triangle
+      color="background"
+      height={["35vh", "80vh"]}
+      width={["95vw", "60vw"]}
+    />
+
+    <Triangle
+      color="primary"
+      height={["25vh", "35vh"]}
+      width={["75vw", "60vw"]}
+      invertX
+    />
+
+    <Triangle
+      color="secondaryLight"
+      height={["10vh", "20vh"]}
+      width={["50vw", "50vw"]}
+      invertX
+      invertY
+    />
+  </div>
+)
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Section.Container id="404" Background={Background}>
+      <Box width={[320, 400, 600]} m="auto">
+        <Heading color="onSurface" fontSize={["9rem", "13rem", "16rem"]}>
+          404
+        </Heading>
+        <Heading color="onSurface" fontSize={["4rem", "5rem", "6rem"]}>
+          {"There isn't anything here"}
+        </Heading>
+      </Box>
+    </Section.Container>
   </Layout>
 )
 

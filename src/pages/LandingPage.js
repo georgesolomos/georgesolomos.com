@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+const LandingPage = () => (
   <Layout>
     <SEO
       title="Home"
@@ -18,4 +18,4 @@ const IndexPage = () => (
   </Layout>
 )
 
-export default IndexPage
+export default LandingPage

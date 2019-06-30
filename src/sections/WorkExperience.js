@@ -1,21 +1,29 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Image, Text, Flex, Box } from "rebass"
+import { Text, Flex, Box } from "rebass"
 import styled from "styled-components"
 import Fade from "react-reveal/Fade"
+import { graphql, useStaticQuery } from "gatsby"
+import Image from "gatsby-image"
 import Section from "../components/Section"
 import { CardContainer, Card } from "../components/Card"
 import SocialLink from "../components/SocialLink"
 import Triangle from "../components/Triangle"
 import ImageSubtitle from "../components/ImageSubtitle"
 import Hide from "../components/Hide"
-import SaabLogo from "../images/saab.png"
 
 const Background = () => (
   <div>
     <Triangle
       color="primaryDark"
-      height={["30vh", "20vh"]}
+      height={["35vh", "40vh"]}
+      width={["100vw", "100vw"]}
+      invertX
+    />
+
+    <Triangle
+      color="background"
+      height={["15vh", "20vh"]}
       width={["50vw", "50vw"]}
       invertX
     />
@@ -89,12 +97,10 @@ const ProjectImage = styled(Image)`
 const ProjectTag = styled.div`
   position: relative;
   height: ${CARD_HEIGHT};
-  top: calc(
-    -${CARD_HEIGHT} - 3.5px
-  ); /*don't know why I have to add 3.5px here ... */
+  top: calc(-${CARD_HEIGHT});
 
   ${MEDIA_QUERY_SMALL} {
-    top: calc(-${CARD_HEIGHT} - 3.5px + (${CARD_HEIGHT} / 4));
+    top: calc(-${CARD_HEIGHT} + (${CARD_HEIGHT} / 4));
   }
 `
 
@@ -121,7 +127,7 @@ const Project = ({
       </TextContainer>
 
       <ImageContainer>
-        <ProjectImage src={logo.src} alt={logo.title} />
+        <ProjectImage fluid={logo.src} alt={logo.title} />
         <ProjectTag>
           <Flex
             style={{
@@ -146,7 +152,7 @@ const Project = ({
             </Box>
           </Flex>
           <ImageSubtitle
-            bg="secondary"
+            bg="secondaryLight"
             color="onSecondary"
             y="bottom"
             x="right"
@@ -155,7 +161,7 @@ const Project = ({
             {type}
           </ImageSubtitle>
           <Hide query={MEDIA_QUERY_SMALL}>
-            <ImageSubtitle bg="surface">{publishedDate}</ImageSubtitle>
+            <ImageSubtitle bg="primaryLight">{publishedDate}</ImageSubtitle>
           </Hide>
         </ProjectTag>
       </ImageContainer>
@@ -171,33 +177,91 @@ Project.propTypes = {
   type: PropTypes.string.isRequired,
   publishedDate: PropTypes.string.isRequired,
   logo: PropTypes.shape({
-    src: PropTypes.string,
+    src: PropTypes.object,
     title: PropTypes.string,
   }).isRequired,
 }
 
-const project9lv = {
-  name: "9LV",
-  description: "9LV CMS software development",
-  projectUrl:
-    "https://saab.com/naval/decision-superiority/combat-management-systems/9lv-cms/",
-  type: "Linux",
-  publishedDate: "2015-Present",
-  logo: { src: SaabLogo, title: "Saab logo" },
+export const fluidImage = graphql`
+  fragment fluidImage on File {
+    childImageSharp {
+      fluid(maxWidth: 200, quality: 100) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`
+
+export const useImage = () => {
+  const img = useStaticQuery(
+    graphql`
+      query {
+        susatImg: file(relativePath: { eq: "work_experience/susat.jpg" }) {
+          ...fluidImage
+        }
+        ninelvImg: file(relativePath: { eq: "work_experience/ninelv.jpg" }) {
+          ...fluidImage
+        }
+        oneviewImg: file(relativePath: { eq: "work_experience/oneview.jpg" }) {
+          ...fluidImage
+        }
+      }
+    `
+  )
+  return img
 }
-const allProjects = [project9lv]
 
-const Projects = () => (
-  <Section.Container id="projects" Background={Background}>
-    <Section.Header name="Projects" icon="💻" Box="notebook" />
-    <CardContainer minWidth="350px">
-      {allProjects.map((p, i) => (
-        <Fade bottom delay={i * 200} key={p.name}>
-          <Project {...p} />
-        </Fade>
-      ))}
-    </CardContainer>
-  </Section.Container>
-)
+const WorkExperience = () => {
+  // TODO: Get these with a GraphQL query
+  const susat = {
+    name: "SUSat",
+    description:
+      "On-Board Data Handling software development on the SUSat 2U CubeSat. " +
+      "This was a project with the University of Adelaide.",
+    projectUrl: "https://space.skyrocket.de/doc_sdat/susat.htm",
+    type: "Embedded",
+    publishedDate: "2013",
+    logo: { src: useImage().susatImg.childImageSharp.fluid, title: "SUSat" },
+  }
+  const oneview = {
+    name: "Saab Oneview",
+    description:
+      "Software Engineer on the OneView Security Management System. " +
+      "Utilised C#, WPF, and WCF on a Windows platform.",
+    projectUrl:
+      "https://saab.com/security/prison-security/security-management-solutions/oneview/",
+    type: "Windows",
+    publishedDate: "2014-2015",
+    logo: {
+      src: useImage().oneviewImg.childImageSharp.fluid,
+      title: "OneView",
+    },
+  }
+  const ninelv = {
+    name: "Saab 9LV",
+    description:
+      "Software Engineer on the 9LV Combat Management System. " +
+      "Utilise Java, Ada, and C++ on a Dockerised Linux platform.",
+    projectUrl:
+      "https://saab.com/naval/decision-superiority/combat-management-systems/9lv-cms/",
+    type: "Linux",
+    publishedDate: "2015-Present",
+    logo: { src: useImage().ninelvImg.childImageSharp.fluid, title: "9LV" },
+  }
+  const allProjects = [susat, oneview, ninelv]
 
-export default Projects
+  return (
+    <Section.Container id="Experience" Background={Background}>
+      <Section.Header name="Work Experience" icon="💻" Box="notebook" />
+      <CardContainer minWidth="350px">
+        {allProjects.map((p, i) => (
+          <Fade bottom delay={i * 200} key={p.name}>
+            <Project {...p} />
+          </Fade>
+        ))}
+      </CardContainer>
+    </Section.Container>
+  )
+}
+
+export default WorkExperience

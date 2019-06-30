@@ -3,10 +3,10 @@ import styled from "styled-components"
 import { Text, Flex, Box } from "rebass"
 import Fade from "react-reveal/Fade"
 import PropTypes from "prop-types"
-import GatsbyLogo from "./logos/gatsby-name.svg"
-import ReactLogo from "./logos/react-name.svg"
-import GraphqlLogo from "./logos/graphql-name.svg"
-import NetlifyLogo from "./logos/netlify-name.svg"
+import GatsbyLogo from "../images/logos/gatsby-name.svg"
+import ReactLogo from "../images/logos/react-name.svg"
+import GraphqlLogo from "../images/logos/graphql-name.svg"
+import NetlifyLogo from "../images/logos/netlify-name.svg"
 
 const FooterContainer = styled.footer`
   padding: 1em;

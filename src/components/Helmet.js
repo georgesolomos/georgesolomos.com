@@ -26,7 +26,6 @@ const Helmet = ({ description, lang, meta, keywords, title, theme = {} }) => (
             lang,
           }}
           title={title}
-          titleTemplate={`%s | ${data.site.siteMetadata.title}`}
           meta={[
             {
               name: `description`,

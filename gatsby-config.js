@@ -28,7 +28,7 @@ module.exports = {
         theme_color: colors.primary,
         display: `standalone`,
         // This path is relative to the root of the site
-        icon: `src/components/logos/georgesolomos.svg`,
+        icon: `src/images/logos/georgesolomos-dark.svg`,
         include_favicon: true,
       },
     },

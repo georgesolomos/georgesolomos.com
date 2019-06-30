@@ -10,17 +10,24 @@ const IconLink = styled(Link)`
   color: ${props => props.theme.colors.primary};
 
   &:hover {
-    color: ${props => props.theme.colors.primaryHover};
+    color: ${props => props.theme.colors.secondary};
   }
 `
 
-const SocialLink = ({ fontAwesomeIcon, name, url }) => (
-  <Tooltip title={name} position="bottom" trigger="mouseenter">
-    <IconLink href={url} target="_blank">
-      <FontAwesome name={fontAwesomeIcon} />
-    </IconLink>
-  </Tooltip>
-)
+function SocialLink({ fontAwesomeIcon, name, url }) {
+  let displayedUrl = url
+  // Rudimentary spam protection
+  if (url.includes("mailto")) {
+    displayedUrl = url.replace(/remove/g, "")
+  }
+  return (
+    <Tooltip title={name} position="bottom" trigger="mouseenter">
+      <IconLink href={displayedUrl} target="_blank">
+        <FontAwesome name={fontAwesomeIcon} />
+      </IconLink>
+    </Tooltip>
+  )
+}
 
 SocialLink.propTypes = {
   fontAwesomeIcon: PropTypes.string.isRequired,

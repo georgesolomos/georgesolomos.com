@@ -48,7 +48,7 @@ const Scroll = styled.circle`
   animation-iteration-count: infinite;
   transform-origin: 50% 20.5px;
   will-change: transform;
-  fill: ${props => props.theme.colors.primary};
+  fill: ${props => props.theme.colors.secondary};
 `
 
 const MouseIcon = ({ onClick }) => (

@@ -40,12 +40,25 @@ const Background = () => (
 
 const centerHorizontally = { marginRight: "auto", marginLeft: "auto" }
 
+// TODO: Get these with a GraphQL query
 const github = {
-  fontAwesomeIcon: "fa-github",
+  fontAwesomeIcon: "github",
   name: "Github",
   url: "https://github.com/georgesolomos",
 }
-const socialLinks = [github]
+const email = {
+  fontAwesomeIcon: "envelope",
+  name: "Email",
+  // SocialLink function removes all 'remove' strings.
+  // Used for rudimentary spam protection.
+  url: "mailto:georgeremove@removegeorgeremovesolomos.com",
+}
+const linkedin = {
+  fontAwesomeIcon: "linkedin",
+  name: "LinkedIn",
+  url: "https://au.linkedin.com/in/george-solomos",
+}
+const socialLinks = [github, email, linkedin]
 const roles = ["Software Engineer 👨‍💻", "Food Enthusiast 🍱", "Traveller ✈️"]
 
 const LandingPage = () => (

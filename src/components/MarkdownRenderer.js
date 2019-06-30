@@ -20,7 +20,7 @@ const StyledLink = styled.a`
     content: "";
     width: 100%;
     height: 3px;
-    background-color: ${props => props.theme.colors.surface};
+    background-color: ${props => props.theme.colors.onBackground};
     transition: all 250ms;
   }
 
@@ -36,7 +36,7 @@ const StyledLink = styled.a`
 
 const MarkdownParagraph = styled.p`
   line-height: 2em;
-  color: ${props => props.theme.colors.onSurface};
+  color: ${props => props.theme.colors.onBackground};
 
   &:first-child {
     margin-top: 0em;
@@ -45,6 +45,7 @@ const MarkdownParagraph = styled.p`
 
 const MarkdownList = styled.ul`
   margin: 0;
+  color: ${props => props.theme.colors.onBackground};
 `
 
 const MarkdownListItem = styled.li`

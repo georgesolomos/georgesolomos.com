@@ -44,7 +44,7 @@ const ProfilePicture = styled(Image)`
 
 // TODO: Get from GraphQL
 const aboutMe = `
-I'm a Software Engineer with over 5 years' experience developing large-scale, distributed
+I'm a Software Team Lead (formerly Engineer) with 8 years' experience developing large-scale, distributed
 systems. I love dealing with the whole stack from radar interfaces to pretty graphics.
 
 I'm passionate about consumer technology and the way we interact with it.
@@ -71,8 +71,7 @@ const About = () => (
           }
         }
       `}
-      render={data => {
-        return (
+      render={data => (
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             <Box width={[1, 1, 4 / 6]} px={[1, 2, 4]} fontSize={[2, 3]}>
               <Fade bottom>
@@ -92,8 +91,7 @@ const About = () => (
               </Fade>
             </Box>
           </Flex>
-        )
-      }}
+        )}
     />
   </Section.Container>
 )

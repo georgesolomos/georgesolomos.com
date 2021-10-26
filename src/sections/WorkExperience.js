@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/forbid-prop-types */
 import React from "react"
 import PropTypes from "prop-types"
 import { Text, Flex, Box } from "rebass"
@@ -231,7 +233,7 @@ const WorkExperience = () => {
     projectUrl:
       "https://saab.com/security/prison-security/security-management-solutions/oneview/",
     type: "Windows",
-    publishedDate: "2014-2015",
+    publishedDate: "2014-2015, 2020-2021",
     logo: {
       src: useImage().oneviewImg.childImageSharp.fluid,
       title: "OneView",
@@ -240,7 +242,7 @@ const WorkExperience = () => {
   const ninelv = {
     name: "Saab 9LV",
     description:
-      "Software Engineer on the 9LV Combat Management System. " +
+      "Software Engineer/Team Lead on the 9LV Combat Management System. " +
       "Utilise Java, Ada, and C++ on a Dockerised Linux platform.",
     projectUrl:
       "https://saab.com/naval/decision-superiority/combat-management-systems/9lv-cms/",
